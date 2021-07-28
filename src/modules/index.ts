@@ -1,3 +1,4 @@
 import CreateNote from "./Note";
+import Dashboard from "./Dashboard";
 
-export {CreateNote};
+export {CreateNote, Dashboard};

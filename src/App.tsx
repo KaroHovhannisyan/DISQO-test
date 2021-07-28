@@ -1,12 +1,11 @@
 import React from 'react';
-import './App.css';
-import { TextArea } from './common/components';
-import { CreateNote } from './modules/';
+import './App.styles.scss';
+import {CreateNote, Dashboard} from './modules/';
 
 function App() {
   return (
     <div className="App">
-       <CreateNote/>
+       <Dashboard/>
     </div>
   );
 }

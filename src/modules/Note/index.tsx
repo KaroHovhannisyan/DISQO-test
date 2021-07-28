@@ -17,6 +17,7 @@ axios.interceptors.request.use(function (config) {
 const Note = () => {
 
     const handleSave = () => {
+        fetch("https://api.github.com/gists")
         axios.get('https://api.github.com/gists',)
           .then(function (response) {
             console.log(response);

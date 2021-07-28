@@ -1,0 +1,6 @@
+@import "../src/configs/styles/variables.styles.scss";
+
+body {
+  background-color: $bodyBackgroundColor;
+  font-family: $mainFont;
+}
