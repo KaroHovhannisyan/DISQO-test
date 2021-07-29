@@ -1,21 +1,17 @@
-import * as React from "react";
 import axios from "axios";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { Note } from "..";
 import { TextArea, Button, Input, Switch } from "../../common/components";
 import "./NotePad.styles.scss";
 
 const NotePad = () => {
-  // const [data, setData] = React.useState([1]);
+  const history = useHistory();
+  const id = "dHGHSAhdaghdgHGhsdashHGDhsadhas";
+
   return (
-    <div>
-      <div className="note-view">
-        <ul>
-          {[1, 2].map((e) => (
-            <Note />
-          ))}
-        </ul>
-      </div>
+    <div className="notePad" onClick={() => history.push(`/notepads/${id}`)}>
+      <h3>Test(7)</h3>
+      <img src="./images/notepad.png" />
     </div>
   );
 };

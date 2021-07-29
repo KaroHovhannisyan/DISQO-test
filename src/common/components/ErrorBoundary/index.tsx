@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo } from 'react';
+import React, { Component, ErrorInfo } from "react";
 
 interface IErrorBoundaryProps {
   children: JSX.Element;
@@ -17,7 +17,7 @@ export default class ErrorBoundary extends Component<
   constructor(props: IErrorBoundaryProps) {
     super(props);
     this.state = {
-      hasError: false
+      hasError: false,
     };
   }
 

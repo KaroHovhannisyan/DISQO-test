@@ -1,8 +1,7 @@
-import Note from "./Note";
-import NoteView from "./Note/NoteView";
+import NoteView from "./Note";
+import Note from "./Note/Note";
 import Dashboard from "./Dashboard";
-import NotepadDemo from "./Notepad/NotepadDemo";
+import NotepadDemo from "./Notepad/index";
 import Notepad from "./Notepad/Notepad";
 
-
-export {Note, Dashboard, Notepad, NotepadDemo, NoteView};
+export { Note, Dashboard, Notepad, NotepadDemo };

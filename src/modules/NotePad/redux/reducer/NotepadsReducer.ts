@@ -1,4 +1,4 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from "@reduxjs/toolkit";
 // import { LOG_IN, LOG_OUT } from '../actions/Profile';
 // import { IEmployer } from '../../../Register/interfaces';
 

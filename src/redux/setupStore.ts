@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import rootReducer from './reducers/';
-import rootSaga from './sagas';
+import { createStore, applyMiddleware, compose } from "redux";
+import createSagaMiddleware from "redux-saga";
+import rootReducer from "./reducers/";
+import rootSaga from "./sagas";
 
 function setupStore(initialState = {}) {
   // Middleware
@@ -9,7 +9,7 @@ function setupStore(initialState = {}) {
 
   const middleware = applyMiddleware(...[sagaMiddleware]);
 
-  const isDevelopment = process.env.NODE_ENV !== 'production';
+  const isDevelopment = process.env.NODE_ENV !== "production";
 
   const composeEnhancers = isDevelopment
     ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

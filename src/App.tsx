@@ -1,15 +1,15 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Routes from './Routes';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./Routes";
 
-import './App.styles.scss';
-import { ErrorBoundary } from './common/components';
+import "./App.styles.scss";
+import { ErrorBoundary } from "./common/components";
 
 function App() {
   return (
     <BrowserRouter>
       <ErrorBoundary>
-          <Routes />
+        <Routes />
       </ErrorBoundary>
     </BrowserRouter>
   );

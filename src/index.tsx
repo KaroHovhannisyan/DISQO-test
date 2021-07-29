@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { Provider } from "react-redux";
 
-import reportWebVitals from './reportWebVitals';
-import setupStore from './redux/setupStore';
+import reportWebVitals from "./reportWebVitals";
+import setupStore from "./redux/setupStore";
 
-const OLD_REDUX_STORE = localStorage.getItem('oldReduxState');
+const OLD_REDUX_STORE = localStorage.getItem("oldReduxState");
 
 let REDUX_INITIAL_STATE = {};
 
@@ -22,7 +22,7 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
