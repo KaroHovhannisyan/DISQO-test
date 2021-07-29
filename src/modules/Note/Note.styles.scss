@@ -85,4 +85,9 @@
     cursor: pointer;
     height: 25px;
   }
+
+  .body {
+    max-height: 130px;
+    overflow: scroll;
+  }
 }

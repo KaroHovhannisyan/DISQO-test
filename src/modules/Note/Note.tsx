@@ -22,7 +22,7 @@ const Note = () => {
         </EditableElement>
         <hr />
         <EditableElement onChange={(e: any) => console.log(e)}>
-          <p>Text Content #1</p>
+          <p className="body">Text Content #1</p>
         </EditableElement>
       </div>
     </li>
