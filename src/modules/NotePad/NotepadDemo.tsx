@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { TextArea, Button, Input, Switch } from "../../common/components";
 import "./NotePad.styles.scss";
 
-const NotePad = () => {
+const NotepadDemo= () => {
 
     const history = useHistory();
     const id = "asdasdasdasasdas"
@@ -17,4 +17,4 @@ const NotePad = () => {
     )
 }
 
-export default NotePad;
+export default NotepadDemo;

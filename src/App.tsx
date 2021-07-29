@@ -1,12 +1,17 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './Routes';
+
 import './App.styles.scss';
-import {CreateNote, Dashboard} from './modules/';
+import { ErrorBoundary } from './common/components';
 
 function App() {
   return (
-    <div className="App">
-       <Dashboard/>
-    </div>
+    <BrowserRouter>
+      <ErrorBoundary>
+          <Routes />
+      </ErrorBoundary>
+    </BrowserRouter>
   );
 }
 
