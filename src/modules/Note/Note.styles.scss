@@ -88,6 +88,13 @@
 
   .body {
     max-height: 130px;
-    overflow: scroll;
+    min-height: 130px;
+    overflow-y: auto;
+  }
+
+  .header {
+    max-height: 35px;
+    min-height: 30px;
+    overflow-y: auto;
   }
 }

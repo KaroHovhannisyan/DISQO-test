@@ -18,7 +18,7 @@ const Note = () => {
           className="remove"
         />
         <EditableElement onChange={(e: any) => console.log(e)}>
-          <div>Title #1</div>
+          <div className="header">Title #1</div>
         </EditableElement>
         <hr />
         <EditableElement onChange={(e: any) => console.log(e)}>

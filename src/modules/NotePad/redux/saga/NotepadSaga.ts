@@ -7,6 +7,8 @@ import { takeLatest, call, put, select } from "redux-saga/effects";
 // } from '../actions/GetCities';
 // import CitiesService from '../../service/CitiesService';
 import { RootState } from "../../../../redux/reducers";
+import NotepadService from "../../service/NotepadService";
+import { getNotepadsSuccess, GET_NOTEPADS } from "../actions";
 
 export function* getNotepads(action: any) {
   const { payload } = action;
@@ -18,16 +20,18 @@ export function* getNotepads(action: any) {
     //   return;
     // }
     // yield put(setLoading(action.payload.country));
-    // const { data }: AxiosResponse<{ data: string[] }> = yield call(
-    //   CitiesService.getCitiesByCountry,
-    //   action.payload.country
-    // );
-    // yield put(getCitiesByCountrySuccess(action.payload.country, data.data));
+    const response: Promise<Response> = yield call(
+      NotepadService.getNotepads,
+    );
+
+    // const body: any[]= yield response.json();
+
+    // yield put(getNotepadsSuccess(body));
   } catch (e) {
     console.error(e);
   }
 }
 
 export default function* fetchDataWatcher() {
-  yield takeLatest("GET_CITIES_BY_COUNTRY", getNotepads);
+  yield takeLatest(GET_NOTEPADS, getNotepads);
 }
