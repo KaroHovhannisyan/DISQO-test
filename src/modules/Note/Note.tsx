@@ -9,7 +9,42 @@ import {
 } from "../../common/components";
 import "./Note.styles.scss";
 
-const Note = () => {
+interface IProps {
+  data: any;
+  notepad: any;
+}
+
+const Note: React.FC<IProps> = ({ data, notepad }) => {
+  const [content, setContent] = React.useState("");
+
+  React.useEffect(() => {
+    fetch(data.raw_url)
+      .then((r) => r.text())
+      .then((d) => setContent(d));
+  }, [data]);
+
+  const handleContentChange = (description: string) => {
+    if (!description) {
+      return;
+    }
+
+    return;
+
+    fetch(`https://api.github.com/gists/${notepad.id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: "token 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",
+      },
+      body: JSON.stringify({
+        files: {
+          [data.filename]: {
+            content: "",
+          },
+        },
+      }),
+    });
+  };
+
   return (
     <li>
       <div className="wrapper">
@@ -17,12 +52,12 @@ const Note = () => {
           src="https://cdn3.iconfinder.com/data/icons/softwaredemo/PNG/256x256/DeleteRed.png"
           className="remove"
         />
-        <EditableElement onChange={(e: any) => console.log(e)}>
-          <div className="header">Title #1</div>
+        <EditableElement onChange={() => ""}>
+          <div className="header">{data.filename}</div>
         </EditableElement>
         <hr />
-        <EditableElement onChange={(e: any) => console.log(e)}>
-          <p className="body">Text Content #1</p>
+        <EditableElement onChange={handleContentChange}>
+          <p className="body">{content}</p>
         </EditableElement>
       </div>
     </li>

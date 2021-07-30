@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { shallowEqual, useSelector } from "react-redux";
 import { TextArea, Button, Input, Switch } from "../../common/components";
 import "./Dashboard.styles.scss";
 import { useHistory } from "react-router-dom";
@@ -22,10 +23,13 @@ axios.interceptors.request.use(
 );
 
 const Dashboard = () => {
-  const [data, setData] = React.useState([1]);
   const history = useHistory();
+  const notepads: any = useSelector(
+    (state: any) => state.notepads.data,
+    shallowEqual
+  );
 
-  console.log(data);
+  console.log(notepads);
   // React.useEffect(() => {
   //     fetch("https://api.github.com/gists", {
   //         headers: {
@@ -42,8 +46,12 @@ const Dashboard = () => {
       <Button text={"Create Notepad"} onClick={() => history.push("/create")} />
       <hr />
       <div className="notePads">
-        {data?.map((e) => (
-          <NotepadDemo />
+        {notepads?.map((e: any) => (
+          <NotepadDemo
+            title={`${e.description}(${Object.keys(e.files).length})`}
+            id={e.id}
+            key={e.id}
+          />
         ))}
       </div>
     </div>

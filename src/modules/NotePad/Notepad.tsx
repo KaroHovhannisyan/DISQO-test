@@ -1,22 +1,58 @@
 import React from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { shallowEqual, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { Note } from "..";
 import { TextArea, Button, Input, Switch } from "../../common/components";
-import "./NotePad.styles.scss";
+import "./Notepad.styles.scss";
 
-const NotePad = () => {
-  const [data, setData] = React.useState([{
-    title: "test",
-    file: "dzyaaaana",
-    id: "sd",
-  }]);
+interface IProps {
+  createMode?: boolean;
+}
+
+const NotePad: React.FC<IProps> = ({ createMode }) => {
+  const [editableMode, setEditableMode] = React.useState(false);
+  const [notes, setNotes] = React.useState([]);
+  const { id }: { id: string } = useParams();
+  const notepad: any = useSelector(
+    (state: any) => state.notepads.idMap[id],
+    shallowEqual
+  );
+
+  const [title, setTitle] = React.useState("");
+
+  React.useEffect(() => {
+    setTitle(notepad.description);
+  }, [notepad]);
+
+  if (createMode) {
+    return (
+      <>
+        <Input
+          onChange={(e) => setTitle(e.currentTarget.value)}
+          value={title}
+        />
+        <div className="note-view">
+          <ul>
+            {notes.map((key) => (
+              <Note key={key} data={notepad.files[key]} notepad={notepad} />
+            ))}
+          </ul>
+        </div>
+      </>
+    );
+  }
+
   return (
     <div>
+      {editableMode ? (
+        <Input value={title} />
+      ) : (
+        <h1 onClick={() => setEditableMode(true)}>{notepad?.description}</h1>
+      )}
       <div className="note-view">
         <ul>
-          {data.map((e) => (
-            <Note key={e.id} />
+          {Object.keys(notepad?.files || {}).map((key) => (
+            <Note key={key} data={notepad.files[key]} notepad={notepad} />
           ))}
         </ul>
       </div>

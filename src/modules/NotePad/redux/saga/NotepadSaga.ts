@@ -20,13 +20,9 @@ export function* getNotepads(action: any) {
     //   return;
     // }
     // yield put(setLoading(action.payload.country));
-    const response: Promise<Response> = yield call(
-      NotepadService.getNotepads,
-    );
+    const data: Promise<Response> = yield call(NotepadService.getNotepads);
 
-    // const body: any[]= yield response.json();
-
-    // yield put(getNotepadsSuccess(body));
+    yield put(getNotepadsSuccess(data));
   } catch (e) {
     console.error(e);
   }

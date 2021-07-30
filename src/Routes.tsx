@@ -8,7 +8,11 @@ const Routes: React.FC = () => {
     <MainLayout>
       <Switch>
         <Route exact path="/" component={Dashboard} />
-        <Route exact path="/create" component={() => <h1>Create</h1>} />
+        <Route
+          exact
+          path="/create"
+          render={() => <Notepad createMode={true} />}
+        />
         <Route exact path="/notepads/:id" component={Notepad} />
       </Switch>
     </MainLayout>

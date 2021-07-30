@@ -1,27 +1,36 @@
 import { PayloadAction } from "@reduxjs/toolkit";
+import { GET_NOTEPADS_SUCCESS } from "../actions";
 // import { LOG_IN, LOG_OUT } from '../actions/Profile';
 // import { IEmployer } from '../../../Register/interfaces';
 
 export interface IProfileReducerState {
-  isLoggedIn: boolean;
+  data: any;
+  idMap: any;
   // profile?: IEmployer;
 }
 
 const initialState: IProfileReducerState = {
-  isLoggedIn: false,
+  data: [],
+  idMap: {},
 };
 
 const notepadReducer = (
   state = initialState,
-  action: PayloadAction<{ employer: any }>
+  action: PayloadAction<{ data: any }>
 ) => {
   const { type, payload } = action;
   switch (type) {
-    case "LOG_OUT":
-      localStorage.clear();
-      return { ...state, isLoggedIn: false, profile: {} };
+    case GET_NOTEPADS_SUCCESS:
+      return {
+        ...state,
+        data: payload.data,
+        idMap: payload.data.reduce(function (result: any, currentObject: any) {
+          result[currentObject.id] = currentObject;
+          return result;
+        }, {}),
+      };
     case "LOG_IN":
-      return { ...state, isLoggedIn: true, profile: payload.employer };
+      return { ...state, isLoggedIn: true };
     default:
       return state;
   }
