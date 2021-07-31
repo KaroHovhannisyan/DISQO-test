@@ -1,8 +1,10 @@
 .dashboard {
-  padding: 160px;
   .notePads {
     display: grid;
     grid-template-columns: auto auto auto;
     padding: 0px;
+  }
+  .charts {
+    height: 400px;
   }
 }

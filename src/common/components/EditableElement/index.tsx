@@ -10,7 +10,7 @@ const EditableElement = (props: {
   if (elements.length > 1) {
     throw Error("Can't have more than one child");
   }
-  const onMouseUp = () => {
+  const onBlur = () => {
     // @ts-ignore
     const value = element.current?.value || element.current?.innerText;
     if (onChange) {
@@ -29,7 +29,7 @@ const EditableElement = (props: {
     contentEditable: true,
     suppressContentEditableWarning: true,
     ref: element,
-    onKeyUp: onMouseUp,
+    onBlur,
   });
   // @ts-ignore
   return elements;

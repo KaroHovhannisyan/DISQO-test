@@ -1,3 +1,17 @@
-textarea {
-  resize: none;
+@import "../../../configs/styles/variables.styles.scss";
+button {
+  background-color: $blue;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: $buttonFontSize;
+  margin: 4px 2px;
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.5;
+    cursor: no-drop;
+  }
 }

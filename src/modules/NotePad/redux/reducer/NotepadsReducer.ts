@@ -1,10 +1,12 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { GET_NOTEPADS_SUCCESS } from "../actions";
+import { deepClone, generateId } from "../../../../utils/helperFunctions";
+import { INotepad } from "../../Interfaces";
+import { ADD_NOTEPAD_SUCCESS, GET_NOTEPADS_SUCCESS, GET_NOTEPAD_BY_ID, GET_NOTEPAD_BY_ID_SUCCESS } from "../actions";
 // import { LOG_IN, LOG_OUT } from '../actions/Profile';
 // import { IEmployer } from '../../../Register/interfaces';
 
 export interface IProfileReducerState {
-  data: any;
+  data: INotepad[];
   idMap: any;
   // profile?: IEmployer;
 }
@@ -18,19 +20,39 @@ const notepadReducer = (
   state = initialState,
   action: PayloadAction<{ data: any }>
 ) => {
-  const { type, payload } = action;
+  const { type, payload: { data } = { data: [] } } = action;
   switch (type) {
     case GET_NOTEPADS_SUCCESS:
       return {
         ...state,
-        data: payload.data,
-        idMap: payload.data.reduce(function (result: any, currentObject: any) {
-          result[currentObject.id] = currentObject;
-          return result;
-        }, {}),
+        data
       };
-    case "LOG_IN":
-      return { ...state, isLoggedIn: true };
+    case GET_NOTEPAD_BY_ID_SUCCESS:
+       const idMapClone = deepClone(state.idMap);
+
+       console.log(data, "saga")
+
+       idMapClone[data.id] = {
+         id: data.id,
+         title: data.description,
+         notes: Object.keys(data.files).map(key => ({
+            title: key,
+            description: data.files[key].content,
+            id: generateId(),
+         }))
+         
+       }
+
+        return {
+          ...state,
+          idMap: idMapClone
+          
+    };
+    case ADD_NOTEPAD_SUCCESS:
+      const stateClone: IProfileReducerState = deepClone(state);
+      stateClone.data.push(data);
+      stateClone.idMap[data.id] = data;
+      return stateClone;
     default:
       return state;
   }

@@ -1,8 +1,9 @@
-import axios from "axios";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { TextArea, Button, Input, Switch } from "../../common/components";
+import { CREATE_ROUTE_FOR_NOTEPAD } from "../../configs/constants";
 import "./Notepad.styles.scss";
+import { removeNotepadById } from "./redux/actions";
 
 interface IProps {
   title: string;
@@ -11,11 +12,23 @@ interface IProps {
 
 const NotepadDemo: React.FC<IProps> = ({ id, title }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleNotepadRemove = () => {
+    dispatch(removeNotepadById(id));
+  };
 
   return (
-    <div className="notePad" onClick={() => history.push(`/notepads/${id}`)}>
-      <h3>{title}</h3>
-      <img src="./images/notepad.png" />
+    <div className="notepad">
+      <img
+        className="remove"
+        src="./images/remove.png"
+        onClick={handleNotepadRemove}
+      />
+      <div onClick={() => history.push(CREATE_ROUTE_FOR_NOTEPAD(id))}>
+        <h3>{title}</h3>
+        <img src="./images/notepad.png" />
+      </div>
     </div>
   );
 };

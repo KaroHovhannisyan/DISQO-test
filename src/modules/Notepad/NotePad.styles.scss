@@ -1,4 +1,4 @@
-.notePad {
+.notepad {
   cursor: pointer;
   width: 250px;
   img {
@@ -15,4 +15,30 @@
     text-align: center;
     margin-bottom: -25px;
   }
+
+  .remove {
+    width: 25px;
+    float: right;
+  }
+}
+
+.back {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  img {
+    height: 25px;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.add-description {
+  display: flex;
+  justify-content: space-between;
 }
