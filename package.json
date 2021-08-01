@@ -30,7 +30,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "yarn prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "tslint": "tslint 'src/**/*.ts?{x}'"
   },
   "eslintConfig": {
     "extends": [
