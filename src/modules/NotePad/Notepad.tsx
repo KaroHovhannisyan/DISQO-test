@@ -7,7 +7,7 @@ import { MAIN_PATH } from "../../configs/constants";
 import { RootState } from "../../redux/reducers";
 import { deepClone, generateId } from "../../utils/helperFunctions";
 import { INote, INotepad } from "./Interfaces";
-import { addNotepad, editNotepad, getNotepadById } from "./redux/actions";
+import { addNotepad, editNotepad, getNotepadById, removeNoteById } from "./redux/actions";
 
 import "./Notepad.styles.scss";
 
@@ -71,9 +71,13 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
   );
 
   const handleNotepadNameChanged = () => {
-    if(createMode) return;
+    if (createMode) return;
     dispatch(editNotepad({ notepadName: title }, notepad.id));
-  }
+  };
+
+  const handleNoteRemove = React.useCallback((note) => {
+      dispatch(removeNoteById(note, notepad.id))
+  }, [notepad]);
 
   return (
     <div>
@@ -109,7 +113,7 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
       <div className="note-view">
         <ul>
           {notes?.map((note) => (
-            <Note key={note.id} data={note} onNoteChange={handleNoteChange} />
+            <Note key={note.id} data={note} onNoteChange={handleNoteChange} onNoteRemove={handleNoteRemove} />
           ))}
         </ul>
       </div>

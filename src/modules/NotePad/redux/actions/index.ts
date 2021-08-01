@@ -1,4 +1,4 @@
-import { INotepad } from "../../Interfaces";
+import { INote, INotepad } from "../../Interfaces";
 
 export const GET_NOTEPADS: string = "GET_NOTEPADS";
 export const GET_NOTEPADS_SUCCESS: string = "GET_NOTEPADS_SUCCESS";
@@ -16,6 +16,9 @@ export const EDIT_NOTEPAD_SUCCESS: string = "EDIT_NOTEPAD_SUCCESS";
 
 export const GET_NOTEPAD_BY_ID: string = "GET_NOTEPAD_BY_ID";
 export const GET_NOTEPAD_BY_ID_SUCCESS: string = "GET_NOTEPAD_BY_ID_SUCCESS";
+
+export const REMOVE_NOTE_BY_ID: string = "REMOVE_NOTE_BY_ID";
+export const REMOVE_NOTE_BY_ID_SUCCESS: string = "REMOVE_NOTE_BY_ID_SUCCESS";
 
 export const getNotepads = () => ({ type: GET_NOTEPADS });
 export const getNotepadsSuccess = (data: any) => ({
@@ -61,4 +64,14 @@ export const getNotepadById = (id: string) => ({
 export const getNotepadByIdSuccess = (data: any) => ({
   type: GET_NOTEPAD_BY_ID_SUCCESS,
   payload: { data },
+});
+
+export const removeNoteById = (data: INote, id: string) => ({
+  type: REMOVE_NOTE_BY_ID,
+  payload: { data, id },
+});
+
+export const removeNoteByIdSuccess = (notepadId: string, noteId: string) => ({
+  type: REMOVE_NOTE_BY_ID_SUCCESS,
+  payload: { notepadId, noteId },
 });

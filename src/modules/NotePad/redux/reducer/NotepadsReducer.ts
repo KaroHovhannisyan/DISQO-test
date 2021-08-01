@@ -6,6 +6,7 @@ import {
   GET_NOTEPADS_SUCCESS,
   GET_NOTEPAD_BY_ID_SUCCESS,
   REMOVE_NOTEPAD_BY_ID_SUCCESS,
+  REMOVE_NOTE_BY_ID_SUCCESS,
 } from "../actions";
 
 export interface IProfileReducerState {
@@ -20,9 +21,10 @@ const initialState: IProfileReducerState = {
 
 const notepadReducer = (
   state = initialState,
-  action: PayloadAction<{ data: any }>
+  action: PayloadAction<{ data?: any, notepadId?: string, noteId: string }>
 ) => {
-  const { type, payload: { data } = { data: [] } } = action;
+  const { type, payload: { data, notepadId = "", noteId } = { data: [] } } = action;
+  const idMapClone = deepClone(state.idMap);
   switch (type) {
     case GET_NOTEPADS_SUCCESS:
       return {
@@ -30,7 +32,6 @@ const notepadReducer = (
         data,
       };
     case GET_NOTEPAD_BY_ID_SUCCESS:
-      const idMapClone = deepClone(state.idMap);
       idMapClone[data.id] = {
         id: data.id,
         title: data.description,
@@ -58,6 +59,16 @@ const notepadReducer = (
           (notepad) => notepad.id !== action.payload.data
         ),
       };
+
+    case REMOVE_NOTE_BY_ID_SUCCESS: 
+
+    idMapClone[notepadId].notes = idMapClone[notepadId].notes.filter((note: INote) => note.id !== noteId)
+
+    return {
+      ...state,
+      idMap: idMapClone,
+    }
+      
 
     default:
       return state;

@@ -2,7 +2,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { takeLatest, call, put } from "redux-saga/effects";
 import GithubApiClient from "../../../../common/service/GithubApiClient";
 import { adaptNotepads } from "../../dataAdapter/dataAdapter";
-import { INotepad, INotepadFile } from "../../Interfaces";
+import { INote, INotepad, INotepadFile } from "../../Interfaces";
 import {
   addNotepadSuccess,
   ADD_NOTEPAD,
@@ -11,8 +11,10 @@ import {
   getNotepadsSuccess,
   GET_NOTEPADS,
   GET_NOTEPAD_BY_ID,
+  removeNoteByIdSuccess,
   removeNotepadByIdSucess,
   REMOVE_NOTEPAD_BY_ID,
+  REMOVE_NOTE_BY_ID,
 } from "../actions";
 
 const GithubApi = new GithubApiClient();
@@ -38,20 +40,31 @@ export function* removeNotepadById(action: PayloadAction<{ id: string }>) {
   }
 }
 
-export function* editNotepadById(action: PayloadAction<{ data: { notepadName?: string, title?: string, description?: string }, id: string}>) {
+export function* editNotepadById(
+  action: PayloadAction<{
+    data: { notepadName?: string; title?: string; description?: string };
+    id: string;
+  }>
+) {
   const {
     payload: { data, id },
   } = action;
   try {
-    const {notepadName, title, description } = data;
+    const { notepadName, title, description } = data;
     if (notepadName) {
-      yield call(GithubApi.notepads.update, { id, description: data.notepadName });
+      yield call(GithubApi.notepads.update, {
+        id,
+        description: data.notepadName,
+      });
     } else {
-      yield call(GithubApi.notepads.update, { id, files: {
-        [`${title}`]: {
-          content: description
-        }
-      } });
+      yield call(GithubApi.notepads.update, {
+        id,
+        files: {
+          [`${title}`]: {
+            content: description,
+          },
+        },
+      });
     }
   } catch (e) {
     console.error(e);
@@ -98,10 +111,32 @@ export function* getNotepadById(action: PayloadAction<{ id: string }>) {
   }
 }
 
+export function* removeNoteById(action: PayloadAction<{ data: INote, id: string }>) {
+  const {
+    payload: { id, data }, 
+  } = action;
+  try {
+    yield call(GithubApi.notepads.update, {
+      id,
+      files: {
+        [`${data.title}`]: {
+          content: "",
+        },
+      },
+    });
+    yield put(removeNoteByIdSuccess(id, data.id))
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export default function* fetchDataWatcher() {
   yield takeLatest(ADD_NOTEPAD, addNotepad);
   yield takeLatest(GET_NOTEPADS, getNotepads);
   yield takeLatest(REMOVE_NOTEPAD_BY_ID, removeNotepadById);
   yield takeLatest(EDIT_NOTEPAD, editNotepadById);
   yield takeLatest(GET_NOTEPAD_BY_ID, getNotepadById);
+  yield takeLatest(REMOVE_NOTE_BY_ID, removeNoteById);
+
 }
+

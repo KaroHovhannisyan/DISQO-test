@@ -1,14 +1,15 @@
 import React from "react";
 import { EditableElement } from "..";
-import { INote } from "../../../modules/Notepad/Interfaces";
+import { INote, INotepad } from "../../../modules/Notepad/Interfaces";
 import "./Note.styles.scss";
 
 interface IProps {
   data: INote;
   onNoteChange: (key: string, value: string, id: string) => void;
+  onNoteRemove: (data: INote) => void; 
 }
 
-const Note: React.FC<IProps> = ({ data, onNoteChange }) => {
+const Note: React.FC<IProps> = ({ data, onNoteChange, onNoteRemove }) => {
   const [saved, setSaved] = React.useState(false);
 
   const handleChange = (key: string, value: string, id: string) => {
@@ -22,7 +23,7 @@ const Note: React.FC<IProps> = ({ data, onNoteChange }) => {
   return (
     <li>
       <div className="wrapper">
-        <i className="fa fa-remove" />
+        <i className="fa fa-remove" onClick={() => onNoteRemove(data)} />
         <EditableElement
           onChange={(value: string) => handleChange("title", value, data.id)}
         >
