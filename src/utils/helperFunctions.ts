@@ -8,8 +8,11 @@ export const deepClone = <T>(data: T) => {
   return JSON.parse(JSON.stringify(data));
 };
 
-export const groupByDate = <T extends { created_at: string }>(data: T[], forSeconds: number) => {
-  const result: {[key: string ]: T[]} = {};
+export const groupByDate = <T extends { created_at: string }>(
+  data: T[],
+  forSeconds: number
+) => {
+  const result: { [key: string]: T[] } = {};
   let timeDiff = new Date(data[0].created_at).getTime() + forSeconds * 1000;
 
   data.forEach((element) => {
@@ -26,5 +29,8 @@ export const groupByDate = <T extends { created_at: string }>(data: T[], forSeco
     }
   });
 
-  return Object.keys(result).map((date: string) => ({ date, data: result[date] }));
+  return Object.keys(result).map((date: string) => ({
+    date,
+    data: result[date],
+  }));
 };

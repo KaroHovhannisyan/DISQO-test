@@ -11,7 +11,6 @@ import { addNotepad, editNotepad, getNotepadById } from "./redux/actions";
 
 import "./Notepad.styles.scss";
 
-
 interface IProps {
   createMode?: boolean;
 }
@@ -83,15 +82,15 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
           <h1>Dashboard</h1>
         </div>
         {createMode && (
-        <Button
-          text="Create notepad"
-          onClick={handleSaveNotepad}
-          disabled={!title || !notes.length}
-        />
-      )}
+          <Button
+            text="Create notepad"
+            onClick={handleSaveNotepad}
+            disabled={!title || !notes.length}
+          />
+        )}
       </div>
 
-      <hr/>
+      <hr />
 
       <div className="add-description flex space-beetwen">
         <Input
@@ -109,7 +108,6 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
           ))}
         </ul>
       </div>
-
     </div>
   );
 };

@@ -41,11 +41,15 @@ const Charts = () => {
     setTimeout(() => {
       setLoading(false);
     }, 1000);
-  }
+  };
 
   return (
     <div className="charts">
-      <Button text={loading ?"Loading..." :" Load more"} onClick={handleLoadMore} disabled={loading} />
+      <Button
+        text={loading ? "Loading..." : " Load more"}
+        onClick={handleLoadMore}
+        disabled={loading}
+      />
       <Chart title="Gists Created" data={gistCreatedData} />
       <Chart title="Files Per Gist" data={filesPerGistData} />
     </div>

@@ -16,7 +16,7 @@ const EditableElement = (props: {
       onChange(value);
     }
   };
-  
+
   // @ts-ignore
   elements = React.cloneElement(elements[0], {
     contentEditable: true,

@@ -66,7 +66,7 @@ export function* addNotepad(
   });
   try {
     //@ts-ignore
-    const data: INotepad= yield call(GithubApi.notepads.create, {
+    const data: INotepad = yield call(GithubApi.notepads.create, {
       description: notepad.title,
       files,
     });
