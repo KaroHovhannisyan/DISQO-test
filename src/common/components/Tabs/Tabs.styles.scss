@@ -1,6 +1,5 @@
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
   background-color: #f1f1f1;
   button {
     background-color: inherit;
@@ -8,11 +7,11 @@
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    border-radius: 0px;
     transition: 0.3s;
     font-size: 17px;
     color: gray;
-	width: 45%;
+    width: 45%;
     &:hover {
       background-color: #ddd;
     }
@@ -24,6 +23,7 @@
 .tabcontent {
   display: none;
   padding: 6px 12px;
+  margin-top: 5px;
   border: 1px solid #ccc;
   border-top: none;
 }
@@ -33,6 +33,6 @@
 }
 
 .active-tab {
-	color: black !important;
-	border-bottom: 1px solid black !important;
+  color: black !important;
+  border-bottom: 1px solid black !important;
 }

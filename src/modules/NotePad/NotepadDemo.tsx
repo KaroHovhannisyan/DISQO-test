@@ -13,7 +13,12 @@ interface IProps {
   createdAt: string | Date;
 }
 
-const NotepadDemo: React.FC<IProps> = ({ id, title, notesCount, createdAt}) => {
+const NotepadDemo: React.FC<IProps> = ({
+  id,
+  title,
+  notesCount,
+  createdAt,
+}) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -23,11 +28,14 @@ const NotepadDemo: React.FC<IProps> = ({ id, title, notesCount, createdAt}) => {
   };
 
   return (
-    <div className="notepad2"onClick={() => history.push(CREATE_ROUTE_FOR_NOTEPAD(id))}>
-        <i className="fa fa-remove" onClick={handleNotepadRemove}></i>
-        <h6>{title}</h6>
-        <p>Notes: {notesCount}</p>
-        <p className="date">{moment(createdAt).format("MMMM DD YYYY")}</p>
+    <div
+      className="notepad2"
+      onClick={() => history.push(CREATE_ROUTE_FOR_NOTEPAD(id))}
+    >
+      <i className="fa fa-remove" onClick={handleNotepadRemove}></i>
+      <h3>{title}</h3>
+      <p>Notes: {notesCount}</p>
+      <p className="date">{moment(createdAt).format("MMMM DD YYYY")}</p>
     </div>
   );
 };

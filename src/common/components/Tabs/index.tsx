@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../Button";
 import "./Tabs.styles.scss";
 
 interface IProps {
@@ -15,12 +14,13 @@ const Tabs: React.FC<IProps> = ({ entries }) => {
     <>
       <div className="tab">
         {entries.map((entry) => (
-          <Button
+          <button
             className={entry.title === activeTab ? "active-tab" : ""}
             key={entry.title}
-            text={entry.title}
             onClick={() => setActiveTab(entry.title)}
-          />
+          >
+            {entry.title}
+          </button>
         ))}
       </div>
 

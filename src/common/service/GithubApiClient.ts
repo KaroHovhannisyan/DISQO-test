@@ -1,4 +1,5 @@
 import { AUTHORIZE_TOKEN, GITHUB_API_URL } from "../../configs/constants";
+import { INotepad } from "../../modules/Notepad/Interfaces";
 import HttpClient from "./HttpClient";
 
 class GithubApiClient extends HttpClient {
@@ -16,8 +17,8 @@ class GithubApiClient extends HttpClient {
       get: () => this.get("/gists"),
       getById: (id: string) => this.get(`/gists/${id}`),
       delete: (id: string) => this.delete(`/gists/${id}`),
-      create: (notepad: any) => this.post("/gists", notepad),
-      update: (notepad: any) => this.put(`/gists/${notepad.id}`, notepad),
+      create: (notepad: INotepad) => this.post("/gists", notepad),
+      update: (notepad: INotepad) => this.put(`/gists/${notepad.id}`, notepad),
     };
   }
 
@@ -25,7 +26,7 @@ class GithubApiClient extends HttpClient {
     return {
       getPublicGists: (page: number) => this.get(`/gists/public?page=${page}`),
     };
-  };
+  }
 }
 
 export default GithubApiClient;

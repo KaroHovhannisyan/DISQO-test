@@ -5,11 +5,4 @@ import EditableElement from "./EditableElement";
 import Tabs from "./Tabs";
 import Chart from "./Chart/Chart";
 
-export {
-  Button,
-  Input,
-  ErrorBoundary,
-  EditableElement,
-  Tabs,
-  Chart,
-};
+export { Button, Input, ErrorBoundary, EditableElement, Tabs, Chart };

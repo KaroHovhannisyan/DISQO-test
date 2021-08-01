@@ -19,7 +19,7 @@ const GithubApi = new GithubApiClient();
 
 export function* getNotepads() {
   try {
-    const data: Promise<Response> = yield call(GithubApi.notepads.get);    
+    const data: Promise<Response> = yield call(GithubApi.notepads.get);
     yield put(getNotepadsSuccess(adaptNotepads(data)));
   } catch (e) {
     console.error(e);
@@ -43,15 +43,15 @@ export function* editNotepadById(action: PayloadAction<{ id: string }>) {
     payload: { id },
   } = action;
   try {
-    console.log(id)
-    yield call(GithubApi.notepads.update, id);
+    // console.log(id);
+    // yield call(GithubApi.notepads.update, id);
   } catch (e) {
     console.error(e);
   }
 }
 
 export function* addNotepad(
-  action: PayloadAction<{ notepad: INotepad; cb: (id: string) => void }>
+  action: PayloadAction<{ notepad: INotepad; cb: () => void }>
 ) {
   const {
     payload: { notepad, cb },
@@ -65,13 +65,14 @@ export function* addNotepad(
     };
   });
   try {
-    const data: INotepad = yield call(GithubApi.notepads.create, {
+    //@ts-ignore
+    const data: INotepad= yield call(GithubApi.notepads.create, {
       description: notepad.title,
       files,
     });
     yield put(addNotepadSuccess(data));
 
-    cb(data.id);
+    cb();
   } catch (e) {
     console.error(e);
   }
@@ -82,7 +83,6 @@ export function* getNotepadById(action: PayloadAction<{ id: string }>) {
     payload: { id },
   } = action;
   try {
-
     const data: Promise<any> = yield call(GithubApi.notepads.getById, id);
     // todo udpdate store
     yield put(getNotepadByIdSuccess(data));
@@ -97,5 +97,4 @@ export default function* fetchDataWatcher() {
   yield takeLatest(REMOVE_NOTEPAD_BY_ID, removeNotepadById);
   yield takeLatest(EDIT_NOTEPAD, editNotepadById);
   yield takeLatest(GET_NOTEPAD_BY_ID, getNotepadById);
-
 }

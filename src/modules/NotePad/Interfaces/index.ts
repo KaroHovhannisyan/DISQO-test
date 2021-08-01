@@ -14,6 +14,7 @@ export interface INotepad {
 }
 
 export interface INotepadFile {
-    [filename: string]: {
-      content: string;
-  }}
+  [filename: string]: {
+    content: string;
+  };
+}

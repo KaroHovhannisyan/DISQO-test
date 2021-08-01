@@ -1,11 +1,10 @@
 import { PayloadAction } from "@reduxjs/toolkit";
+import { IGist } from "../../interfaces";
 import { GET_PUBLIC_GISTS_SUCCES } from "../actions";
-// import { LOG_IN, LOG_OUT } from '../actions/Profile';
-// import { IEmployer } from '../../../Register/interfaces';
 
 export interface IProfileReducerState {
-  filesPerGist: any;
-  gistCreated: any;
+  filesPerGist: IGist[];
+  gistCreated: IGist[];
   page: number;
 }
 
@@ -17,7 +16,7 @@ const initialState: IProfileReducerState = {
 
 const gistsReducer = (
   state = initialState,
-  action: PayloadAction<{ gistCreated: any, filesPerGist: any } >
+  action: PayloadAction<{ gistCreated: any; filesPerGist: any }>
 ) => {
   const { type, payload } = action;
   switch (type) {

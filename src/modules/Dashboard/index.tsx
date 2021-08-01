@@ -31,14 +31,14 @@ const Dashboard = () => {
             title: "Notepads",
             render: () => (
               <>
-              <div className="flex space-beetwen">
-                <h1>My Notepads</h1>
-              <Button
-                  text={"Create Notepad"}
-                  onClick={() => history.push(CREATE_NOTEPAD)}
-                />
-              </div>
-               <div className="notepads">
+                <div className="flex space-beetwen">
+                  <h1>My Notepads</h1>
+                  <Button
+                    text={"Create Notepad"}
+                    onClick={() => history.push(CREATE_NOTEPAD)}
+                  />
+                </div>
+                <div className="notepads">
                   {notepads?.map((notepad: INotepad) => (
                     <NotepadDemo
                       title={`${notepad.title}`}
@@ -48,14 +48,16 @@ const Dashboard = () => {
                       createdAt={notepad.createdAt}
                     />
                   ))}
-                  {!notepads.length ? <h1>You don't have any notepads yet (</h1> : null }
+                  {!notepads.length ? (
+                    <h1>You don't have any notepads yet (</h1>
+                  ) : null}
                 </div>
               </>
             ),
           },
           {
             title: "Charts",
-            render: () => <Charts />
+            render: () => <Charts />,
           },
         ]}
       />

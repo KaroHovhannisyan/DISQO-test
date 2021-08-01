@@ -29,6 +29,9 @@
   img {
     height: 25px;
   }
+  h1 {
+    margin-left: 5px;
+  }
 }
 
 .header {
@@ -36,11 +39,15 @@
   justify-content: space-between;
   width: 90%;
   margin-left: 5%;
+  height: 50px;
 }
 
 .add-description {
-  display: flex;
-  justify-content: space-between;
+  width: 90%;
+  margin-left: 5%;
+  input {
+    width: 50%;
+  }
 }
 
 .notepad2 {
@@ -54,14 +61,14 @@
   border-radius: 10px;
   cursor: pointer;
   height: 200px;
-  h6, p {
+  h3,
+  p {
     color: black;
   }
   .date {
     font-size: 14px;
     font-style: italic;
     position: relative;
-    top: 80px;
   }
   i {
     color: black;
@@ -71,9 +78,9 @@
 }
 
 .notepad2:nth-child(2n) {
-  background-color: #DDDDDD;
+  background-color: #dddddd;
 }
-.notepad2:nth-child(3n){
+.notepad2:nth-child(3n) {
   background-color: #bbdefb;
 }
 .notepad2:nth-child(4n) {

@@ -1,14 +1,15 @@
 @import "../../../configs/styles/variables.styles.scss";
 
 button {
-  background-color: $blue;
+  background-color: #39acdc;
   border: none;
-  color: $white;
-  padding: 15px 32px;
+  color: white;
+  height: 40px;
+  border-radius: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: $buttonFontSize;
+  font-size: 14px;
   margin: 4px 2px;
   cursor: pointer;
   &:disabled {
