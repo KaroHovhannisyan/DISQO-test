@@ -1,4 +1,3 @@
-import React from "react";
 import {
   LineChart,
   Line,
@@ -55,8 +54,15 @@ const data = [
   },
 ];
 
-const Charts = () => {
+interface IProps {
+  title: string;
+  data: any;
+}
+
+const Chart: React.FC<IProps> = ({ title, data }) => {
   return (
+    <>
+    <h1>{title}</h1>
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
         width={500}
@@ -83,7 +89,8 @@ const Charts = () => {
         <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
       </LineChart>
     </ResponsiveContainer>
+    </>
   );
 };
 
-export default Charts;
+export default Chart;

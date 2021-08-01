@@ -20,6 +20,12 @@ class GithubApiClient extends HttpClient {
       update: (notepad: any) => this.put(`/gists/${notepad.id}`, notepad),
     };
   }
+
+  get gists() {
+    return {
+      getPublicGists: () => this.get("/gists/public"),
+    };
+  };
 }
 
 export default GithubApiClient;

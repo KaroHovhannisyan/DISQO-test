@@ -42,3 +42,47 @@
   display: flex;
   justify-content: space-between;
 }
+
+.notepad2 {
+  padding: 10px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 30px;
+  background-color: #c5cae9;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 200px;
+  h6, p {
+    color: black;
+  }
+  .date {
+    font-size: 14px;
+    font-style: italic;
+    position: relative;
+    top: 80px;
+  }
+  i {
+    color: black;
+    font-size: 20px;
+    float: right;
+  }
+}
+
+.notepad2:nth-child(2n) {
+  background-color: #DDDDDD;
+}
+.notepad2:nth-child(3n){
+  background-color: #bbdefb;
+}
+.notepad2:nth-child(4n) {
+  background-color: #c8e6c9;
+}
+.notepad2:nth-child(5n) {
+  background-color: #fff9c4;
+}
+
+.notepad2:nth-child(6n) {
+  background-color: #ffccbc;
+}

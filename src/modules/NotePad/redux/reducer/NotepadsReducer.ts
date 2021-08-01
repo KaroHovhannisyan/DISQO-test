@@ -1,7 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { deepClone, generateId } from "../../../../utils/helperFunctions";
 import { INotepad } from "../../Interfaces";
-import { ADD_NOTEPAD_SUCCESS, GET_NOTEPADS_SUCCESS, GET_NOTEPAD_BY_ID, GET_NOTEPAD_BY_ID_SUCCESS } from "../actions";
+import { ADD_NOTEPAD_SUCCESS, GET_NOTEPADS_SUCCESS, GET_NOTEPAD_BY_ID, GET_NOTEPAD_BY_ID_SUCCESS, REMOVE_NOTEPAD_BY_ID_SUCCESS } from "../actions";
 // import { LOG_IN, LOG_OUT } from '../actions/Profile';
 // import { IEmployer } from '../../../Register/interfaces';
 
@@ -18,7 +18,7 @@ const initialState: IProfileReducerState = {
 
 const notepadReducer = (
   state = initialState,
-  action: PayloadAction<{ data: any }>
+  action: PayloadAction<{ data: any } >
 ) => {
   const { type, payload: { data } = { data: [] } } = action;
   switch (type) {
@@ -29,9 +29,6 @@ const notepadReducer = (
       };
     case GET_NOTEPAD_BY_ID_SUCCESS:
        const idMapClone = deepClone(state.idMap);
-
-       console.log(data, "saga")
-
        idMapClone[data.id] = {
          id: data.id,
          title: data.description,
@@ -53,6 +50,14 @@ const notepadReducer = (
       stateClone.data.push(data);
       stateClone.idMap[data.id] = data;
       return stateClone;
+
+    case REMOVE_NOTEPAD_BY_ID_SUCCESS:
+
+      return {
+        ...state,
+        data: state.data.filter(notepad => notepad.id !== action.payload.data)
+      }
+
     default:
       return state;
   }

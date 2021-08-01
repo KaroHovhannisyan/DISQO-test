@@ -4,3 +4,11 @@ body {
   background-color: $bodyBackgroundColor;
   font-family: $mainFont;
 }
+
+.flex {
+    display: flex;
+}
+
+.space-beetwen {
+  justify-content: space-between;
+}

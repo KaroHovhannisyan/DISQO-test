@@ -6,6 +6,7 @@ export interface INote {
 }
 
 export interface INotepad {
+  createdAt: string | Date;
   notesLength?: number;
   id: string;
   title: string;

@@ -5,6 +5,7 @@ import Switch from "./Switch";
 import ErrorBoundary from "./ErrorBoundary";
 import EditableElement from "./EditableElement";
 import Tabs from "./Tabs";
+import Chart from "./Chart/Chart";
 
 export {
   TextArea,
@@ -14,4 +15,5 @@ export {
   ErrorBoundary,
   EditableElement,
   Tabs,
+  Chart,
 };

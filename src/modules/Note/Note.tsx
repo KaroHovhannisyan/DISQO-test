@@ -1,9 +1,5 @@
 import React from "react";
 import {
-  TextArea,
-  Button,
-  Input,
-  Switch,
   EditableElement,
 } from "../../common/components";
 import { INote } from "../Notepad/Interfaces";
@@ -18,16 +14,12 @@ const Note: React.FC<IProps> = ({ data, onNoteChange }) => {
   return (
     <li>
       <div className="wrapper">
-        <img
-          src="https://cdn3.iconfinder.com/data/icons/softwaredemo/PNG/256x256/DeleteRed.png"
-          className="remove"
-        />
+        <i className="fa fa-remove" />
         <EditableElement
           onChange={(value: string) => onNoteChange("title", value, data.id)}
         >
           <div className="header">{data.title}</div>
         </EditableElement>
-        <hr />
         <EditableElement
           onChange={(value: string) =>
             onNoteChange("description", value, data.id)

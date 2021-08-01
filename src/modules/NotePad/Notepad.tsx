@@ -33,6 +33,7 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
   }, [])
 
   React.useEffect(() => {
+    if (!notepad) return;
     setTitle(notepad?.title);
     setNotes(notepad?.notes);
   }, [ notepad ]);
@@ -46,12 +47,12 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
   // }, [notes]);
 
   const handleAddNote = () => {
-    setNotes([...notes, { title: "", description: "", id: generateId() }]);
+    setNotes([...notes, { title: "TITLE", description: "Description", id: generateId() }]);
   };
 
   const handleSaveNotepad = () => {
     dispatch(
-      addNotepad({ title, notes, id: generateId() }, (id: string) =>
+      addNotepad({ title, notes, id: generateId(), createdAt: new Date() }, (id: string) =>
         history.push(CREATE_ROUTE_FOR_NOTEPAD(id))
       )
     );

@@ -3,10 +3,11 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { TextArea, Button, Input, Switch, Tabs } from "../../common/components";
 import "./Dashboard.styles.scss";
 import { useHistory } from "react-router-dom";
-import { Charts, NotepadDemo } from "..";
+import { NotepadDemo } from "..";
 import { CREATE_NOTEPAD } from "../../configs/constants";
-import { INote, INotepad } from "../Notepad/Interfaces";
+import { INotepad } from "../Notepad/Interfaces";
 import { getNotepads } from "../Notepad/redux/actions";
+import Charts from "./components/Charts";
 
 const Dashboard = () => {
   const history = useHistory();
@@ -40,26 +41,31 @@ const Dashboard = () => {
             title: "Notepads",
             render: () => (
               <>
-                <Button
+              <div className="flex space-beetwen">
+                <h1>My Notepads</h1>
+              <Button
                   text={"Create Notepad"}
                   onClick={() => history.push(CREATE_NOTEPAD)}
                 />
-                <hr />
-                <div className="notePads">
+              </div>
+               <div className="notepads">
                   {notepads?.map((notepad: INotepad) => (
                     <NotepadDemo
-                      title={`${notepad.title}(${notepad.notesLength})`}
+                      title={`${notepad.title}`}
+                      notesCount={notepad.notesLength ?? 0}
                       id={notepad.id}
                       key={notepad.id}
+                      createdAt={notepad.createdAt}
                     />
                   ))}
+                  {!notepads.length ? <h1>You don't have any notepads yet (</h1> : null }
                 </div>
               </>
             ),
           },
           {
             title: "Charts",
-            render: () => <div className="charts"><Charts /></div>,
+            render: () => <Charts />
           },
         ]}
       />
