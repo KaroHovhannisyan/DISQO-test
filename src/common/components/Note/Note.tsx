@@ -6,7 +6,7 @@ import "./Note.styles.scss";
 interface IProps {
   data: INote;
   onNoteChange: (key: string, value: string, id: string) => void;
-  onNoteRemove: (data: INote) => void; 
+  onNoteRemove: (data: INote) => void;
 }
 
 const Note: React.FC<IProps> = ({ data, onNoteChange, onNoteRemove }) => {

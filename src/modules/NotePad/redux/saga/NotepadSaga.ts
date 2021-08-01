@@ -111,9 +111,11 @@ export function* getNotepadById(action: PayloadAction<{ id: string }>) {
   }
 }
 
-export function* removeNoteById(action: PayloadAction<{ data: INote, id: string }>) {
+export function* removeNoteById(
+  action: PayloadAction<{ data: INote; id: string }>
+) {
   const {
-    payload: { id, data }, 
+    payload: { id, data },
   } = action;
   try {
     yield call(GithubApi.notepads.update, {
@@ -124,7 +126,7 @@ export function* removeNoteById(action: PayloadAction<{ data: INote, id: string 
         },
       },
     });
-    yield put(removeNoteByIdSuccess(id, data.id))
+    yield put(removeNoteByIdSuccess(id, data.id));
   } catch (e) {
     console.error(e);
   }
@@ -137,6 +139,4 @@ export default function* fetchDataWatcher() {
   yield takeLatest(EDIT_NOTEPAD, editNotepadById);
   yield takeLatest(GET_NOTEPAD_BY_ID, getNotepadById);
   yield takeLatest(REMOVE_NOTE_BY_ID, removeNoteById);
-
 }
-

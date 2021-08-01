@@ -21,9 +21,10 @@ const initialState: IProfileReducerState = {
 
 const notepadReducer = (
   state = initialState,
-  action: PayloadAction<{ data?: any, notepadId?: string, noteId: string }>
+  action: PayloadAction<{ data?: any; notepadId?: string; noteId: string }>
 ) => {
-  const { type, payload: { data, notepadId = "", noteId } = { data: [] } } = action;
+  const { type, payload: { data, notepadId = "", noteId } = { data: [] } } =
+    action;
   const idMapClone = deepClone(state.idMap);
   switch (type) {
     case GET_NOTEPADS_SUCCESS:
@@ -60,15 +61,15 @@ const notepadReducer = (
         ),
       };
 
-    case REMOVE_NOTE_BY_ID_SUCCESS: 
+    case REMOVE_NOTE_BY_ID_SUCCESS:
+      idMapClone[notepadId].notes = idMapClone[notepadId].notes.filter(
+        (note: INote) => note.id !== noteId
+      );
 
-    idMapClone[notepadId].notes = idMapClone[notepadId].notes.filter((note: INote) => note.id !== noteId)
-
-    return {
-      ...state,
-      idMap: idMapClone,
-    }
-      
+      return {
+        ...state,
+        idMap: idMapClone,
+      };
 
     default:
       return state;
