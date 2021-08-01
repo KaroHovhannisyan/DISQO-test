@@ -29,20 +29,6 @@ const NotepadDemo: React.FC<IProps> = ({ id, title, notesCount, createdAt}) => {
         <p>Notes: {notesCount}</p>
         <p className="date">{moment(createdAt).format("MMMM DD YYYY")}</p>
     </div>
-  )
-
-  return (
-    <div className="notepad">
-      <img
-        className="remove"
-        src="./images/remove.png"
-        onClick={handleNotepadRemove}
-      />
-      <div onClick={() => history.push(CREATE_ROUTE_FOR_NOTEPAD(id))}>
-        <h3>{title}</h3>
-        <img src="./images/notepad.png" />
-      </div>
-    </div>
   );
 };
 

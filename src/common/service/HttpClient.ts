@@ -58,7 +58,7 @@ class HttpClient {
     });
   }
 
-  delete<T>(endpoint: string, options = {}) {
+  delete(endpoint: string, options = {}) {
     return this._fetchJSON(endpoint, {
       parseResponse: false,
       ...options,

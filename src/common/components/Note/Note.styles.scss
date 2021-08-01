@@ -21,7 +21,6 @@
   ul {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: center;
   }
   ul li .wrapper {
     text-decoration: none;
@@ -37,42 +36,25 @@
   }
 
   ul li:nth-child(even) .wrapper {
-    // transform: rotate(4deg);
-    // position: relative;
-    // top: 5px;
     background: #cfc;
   }
   ul li:nth-child(3n) .wrapper {
-    // transform: rotate(-3deg);
-    // position: relative;
-    // top: -5px;
     background: #f4b6c2;
   }
   ul li:nth-child(4n) .wrapper {
-    // transform: rotate(-3deg);
-    // position: relative;
-    // top: -5px;
     background: #ffffff;
   }
   ul li:nth-child(5n) .wrapper {
-    // transform: rotate(5deg);
-    // position: relative;
-    // top: -10px;
     background: #fdf498;
   }
 
   ul li:nth-child(6n) .wrapper {
-    // transform: rotate(5deg);
-    // position: relative;
-    // top: -10px;
     background: #e7eff6;
   }
 
   ul li .wrapper:hover,
   ul li .wrapper:focus {
     box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.7);
-    // box-shadow: 10px 10px 10px rgba(33, 33, 33, 0.7);
-
     position: relative;
     z-index: 5;
   }
@@ -82,9 +64,9 @@
   }
 
   .body {
-    max-height: 400px;
+    max-height: 300px;
     margin-top: 10px;
-    min-height: 400px;
+    min-height: 300px;
     overflow-y: scroll;
     font-weight: 200;
   }

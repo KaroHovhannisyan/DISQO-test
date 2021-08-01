@@ -9,20 +9,17 @@ import {
   ResponsiveContainer,
   Brush,
 } from "recharts";
-import { Button } from "..";
 
 interface IProps {
   title: string;
   data: any;
-  onLoadMore: () => void;
 }
 
-const Chart: React.FC<IProps> = ({ title, data, onLoadMore }) => {
+const Chart: React.FC<IProps> = ({ title, data }) => {
   return (
     <>
     <div className="flex space-beetwen">
       <h1>{title}</h1>
-      <Button text="Load more" onClick={onLoadMore}/>
     </div>
     <ResponsiveContainer width="100%" height="100%">
       <LineChart

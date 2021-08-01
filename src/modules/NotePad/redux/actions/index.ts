@@ -19,7 +19,6 @@ export const GET_NOTEPAD_BY_ID: string = "GET_NOTEPAD_BY_ID";
 export const GET_NOTEPAD_BY_ID_SUCCESS: string = "GET_NOTEPAD_BY_ID_SUCCESS";
 
 
-
 export const getNotepads = () => ({ type: GET_NOTEPADS });
 export const getNotepadsSuccess = (data: any) => ({
   type: GET_NOTEPADS_SUCCESS,

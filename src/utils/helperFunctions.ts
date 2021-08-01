@@ -11,7 +11,6 @@ export const groupByDate = <T>(data: T[], forSeconds: number) => {
   //@ts-ignore
   let timeDiff = new Date(data[0].created_at).getTime() + 5000;
 
-  console.log(timeDiff, "resultajsdasd initial")
 
   //@ts-ignore
   data.forEach((element, index) => {
@@ -27,7 +26,6 @@ export const groupByDate = <T>(data: T[], forSeconds: number) => {
           result[timeDiff] = [element];
         }
       } else {
-        console.log(dateInMiliSeconds, "resultajsdasd time changed", timeDiff)
         timeDiff = dateInMiliSeconds + 5000;
         //@ts-ignore
         result[timeDiff] = [element];

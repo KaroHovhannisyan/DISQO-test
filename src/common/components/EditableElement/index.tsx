@@ -1,29 +1,27 @@
 import React, { useRef, useEffect } from "react";
 
 const EditableElement = (props: {
-  children: any;
-  onChange: any;
+  children: JSX.Element;
+  onChange: (text: string) => void;
 }): JSX.Element => {
   const { onChange } = props;
-  const element = useRef();
+  const element = useRef<HTMLInputElement>();
   let elements = React.Children.toArray(props.children);
   if (elements.length > 1) {
     throw Error("Can't have more than one child");
   }
   const onBlur = () => {
-    // @ts-ignore
     const value = element.current?.value || element.current?.innerText;
-    if (onChange) {
+    if (onChange && value) {
       onChange(value);
     }
   };
   useEffect(() => {
-    // @ts-ignore
     const value = element.current?.value || element.current?.innerText;
-    if (onChange) {
+    if (onChange && value) {
       onChange(value);
     }
-  }, []);
+  }, [onChange]);
   // @ts-ignore
   elements = React.cloneElement(elements[0], {
     contentEditable: true,

@@ -1,14 +1,11 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { deepClone, generateId } from "../../../../utils/helperFunctions";
-import { INotepad } from "../../Interfaces";
-import { ADD_NOTEPAD_SUCCESS, GET_NOTEPADS_SUCCESS, GET_NOTEPAD_BY_ID, GET_NOTEPAD_BY_ID_SUCCESS, REMOVE_NOTEPAD_BY_ID_SUCCESS } from "../actions";
-// import { LOG_IN, LOG_OUT } from '../actions/Profile';
-// import { IEmployer } from '../../../Register/interfaces';
+import { INote, INotepad } from "../../Interfaces";
+import { ADD_NOTEPAD_SUCCESS, GET_NOTEPADS_SUCCESS, GET_NOTEPAD_BY_ID_SUCCESS, REMOVE_NOTEPAD_BY_ID_SUCCESS } from "../actions";
 
 export interface IProfileReducerState {
   data: INotepad[];
-  idMap: any;
-  // profile?: IEmployer;
+  idMap: {[key: string]: INote};
 }
 
 const initialState: IProfileReducerState = {

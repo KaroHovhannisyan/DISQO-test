@@ -4,29 +4,29 @@ import { GET_PUBLIC_GISTS_SUCCES } from "../actions";
 // import { IEmployer } from '../../../Register/interfaces';
 
 export interface IProfileReducerState {
-  data: any[];
-  gistCreatedPage: number;
-  idMap: any;
+  filesPerGist: any;
+  gistCreated: any;
+  page: number;
 }
 
 const initialState: IProfileReducerState = {
-  data: [],
-  idMap: {},
-  gistCreatedPage: 1,
+  filesPerGist: [],
+  gistCreated: [],
+  page: 1,
 };
 
 const gistsReducer = (
   state = initialState,
-  action: PayloadAction<{ data: any } >
+  action: PayloadAction<{ gistCreated: any, filesPerGist: any } >
 ) => {
-  const { type, payload: { data } = { data: [] } } = action;
-  console.log(data, "dasdas", type);
+  const { type, payload } = action;
   switch (type) {
     case GET_PUBLIC_GISTS_SUCCES:
       return {
         ...state,
-        data: [...data, ...state.data],
-        gistCreatedPage: state.gistCreatedPage + 1,
+        gistCreated: [...payload.gistCreated, ...state.gistCreated],
+        filesPerGist: [...payload.filesPerGist, ...state.filesPerGist],
+        page: state.page + 1,
       };
 
     default:

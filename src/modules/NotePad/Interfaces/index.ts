@@ -12,3 +12,8 @@ export interface INotepad {
   title: string;
   notes: INote[];
 }
+
+export interface INotepadFile {
+    [filename: string]: {
+      content: string;
+  }}

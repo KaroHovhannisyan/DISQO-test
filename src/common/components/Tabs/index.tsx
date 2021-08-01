@@ -5,7 +5,7 @@ import "./Tabs.styles.scss";
 interface IProps {
   entries: {
     title: string;
-    render: any;
+    render: () => JSX.Element;
   }[];
 }
 

@@ -1,8 +1,8 @@
-import moment from "moment";
 import { takeLatest, call, put, select} from "redux-saga/effects";
 import GithubApiClient from "../../../../common/service/GithubApiClient";
 import { RootState } from "../../../../redux/reducers";
 import { groupByDate } from "../../../../utils/helperFunctions";
+import { IGist } from "../../interfaces";
 import {
   getPublicGistsSuccess,
   GET_PUBLIC_GISTS,
@@ -14,12 +14,11 @@ export function* getPublicGists() {
   try {
 
     const gistCreatedPage: number = yield select(
-      (store: RootState) => store.publicGists.gistCreatedPage
+      (store: RootState) => store.publicGists.page
     );
 
-    const data: Promise<any[]> = yield call(GithubApi.gists.getPublicGists, gistCreatedPage);
-    //@ts-ignore
-    yield put(getPublicGistsSuccess(groupByDate(data.reverse(), 5)));
+    const data: IGist[] = yield call(GithubApi.gists.getPublicGists, gistCreatedPage);
+    yield put(getPublicGistsSuccess(groupByDate(data.reverse(), 5), data) );
   } catch (e) {
     console.error(e);
   }

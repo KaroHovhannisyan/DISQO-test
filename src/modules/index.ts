@@ -1,4 +1,4 @@
-import Note from "./Note/Note";
+import Note from "../common/components/Note/Note";
 import Dashboard from "./Dashboard";
 import NotepadDemo from "./Notepad/NotepadDemo";
 import Notepad from "./Notepad/Notepad";

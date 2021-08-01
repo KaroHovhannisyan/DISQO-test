@@ -1,8 +1,8 @@
 import React from "react";
 import {
   EditableElement,
-} from "../../common/components";
-import { INote } from "../Notepad/Interfaces";
+} from "..";
+import { INote } from "../../../modules/Notepad/Interfaces";
 import "./Note.styles.scss";
 
 interface IProps {

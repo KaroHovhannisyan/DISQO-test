@@ -1,11 +1,12 @@
 import React from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { Note } from "..";
-import { TextArea, Button, Input, Switch } from "../../common/components";
+import { Button, Input } from "../../common/components";
 import { CREATE_ROUTE_FOR_NOTEPAD, MAIN_PATH } from "../../configs/constants";
+import { RootState } from "../../redux/reducers";
 import { deepClone, generateId } from "../../utils/helperFunctions";
-import { INote } from "./Interfaces";
+import { INote, INotepad } from "./Interfaces";
 import "./Notepad.styles.scss";
 import { addNotepad, editNotepad, getNotepadById } from "./redux/actions";
 
@@ -14,7 +15,7 @@ interface IProps {
 }
 
 const NotePad: React.FC<IProps> = ({ createMode }) => {
-  const [editableMode, setEditableMode] = React.useState(false);
+  // const [editableMode, setEditableMode] = React.useState(false);
   const [notes, setNotes] = React.useState<INote[]>([]);
   const [title, setTitle] = React.useState("");
 
@@ -22,29 +23,21 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const notepad: any = useSelector(
-    (state: any) => state.notepads.idMap[id],
+  const notepad: INotepad = useSelector(
+    (state: RootState) => state.notepads.idMap[id],
   );
 
   React.useEffect(() => {
     if(!createMode) {
       dispatch(getNotepadById(id))
     }
-  }, [])
+  }, [createMode, dispatch, id])
 
   React.useEffect(() => {
     if (!notepad) return;
     setTitle(notepad?.title);
     setNotes(notepad?.notes);
   }, [ notepad ]);
-
-  // React.useEffect(() => {
-  //   notes?.forEach(note => {
-  //     if(!note.description && note.raw_url) {
-  //       dispatch(getNoteContent(note.raw_url, note.title, notepad.id))
-  //     }
-  //   })
-  // }, [notes]);
 
   const handleAddNote = () => {
     setNotes([...notes, { title: "TITLE", description: "Description", id: generateId() }]);
@@ -60,9 +53,8 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
 
   const handleNoteChange = React.useCallback(
     (key: string, value: string, id: string) => {
-      console.log(key, value);
       const notesClone = deepClone(notes);
-      const foundIndex = notesClone.findIndex((note: INote) => note.id == id);
+      const foundIndex = notesClone.findIndex((note: INote) => note.id === id);
       if (value !== notesClone[foundIndex][key]) {
         notesClone[foundIndex][key] = value;
         setNotes(notesClone);
@@ -71,14 +63,14 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
         }
       }
     },
-    [notes, dispatch, notepad]
+    [notes, dispatch, notepad, createMode]
   );
 
     return (
       <>
         <div className="header">
           <div className="back" onClick={() => history.push(MAIN_PATH)}>
-            <img src="https://static.thenounproject.com/png/3403548-200.png" />
+            <img src="https://static.thenounproject.com/png/3403548-200.png" alt="back" />
             <h1>Dashboard</h1>
           </div>
 
