@@ -5,6 +5,7 @@ interface IProps {
   placeholder: string;
   name: string;
   onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+  onBlur?: () => void;
   value?: string;
 }
 

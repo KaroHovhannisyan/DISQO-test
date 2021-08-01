@@ -38,13 +38,21 @@ export function* removeNotepadById(action: PayloadAction<{ id: string }>) {
   }
 }
 
-export function* editNotepadById(action: PayloadAction<{ id: string }>) {
+export function* editNotepadById(action: PayloadAction<{ data: { notepadName?: string, title?: string, description?: string }, id: string}>) {
   const {
-    payload: { id },
+    payload: { data, id },
   } = action;
   try {
-    // console.log(id);
-    // yield call(GithubApi.notepads.update, id);
+    const {notepadName, title, description } = data;
+    if (notepadName) {
+      yield call(GithubApi.notepads.update, { id, description: data.notepadName });
+    } else {
+      yield call(GithubApi.notepads.update, { id, files: {
+        [`${title}`]: {
+          content: description
+        }
+      } });
+    }
   } catch (e) {
     console.error(e);
   }
@@ -84,7 +92,6 @@ export function* getNotepadById(action: PayloadAction<{ id: string }>) {
   } = action;
   try {
     const data: Promise<any> = yield call(GithubApi.notepads.getById, id);
-    // todo udpdate store
     yield put(getNotepadByIdSuccess(data));
   } catch (e) {
     console.error(e);

@@ -43,7 +43,7 @@ export const addNotepadSuccess = (data: INotepad) => ({
   payload: { data },
 });
 
-export const editNotepad = (data: INotepad, id: string) => ({
+export const editNotepad = (data: any, id: string) => ({
   type: EDIT_NOTEPAD,
   payload: { data, id },
 });

@@ -12,15 +12,12 @@ const Note: React.FC<IProps> = ({ data, onNoteChange }) => {
   const [saved, setSaved] = React.useState(false);
 
   const handleChange = (key: string, value: string, id: string) => {
-    console.log("change", key, value);
     onNoteChange(key, value, id);
     setSaved(true);
     setTimeout(() => {
       setSaved(false);
     }, 1000);
   };
-
-  console.log("render");
 
   return (
     <li>

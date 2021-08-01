@@ -16,7 +16,6 @@ interface IProps {
 }
 
 const NotePad: React.FC<IProps> = ({ createMode }) => {
-  // const [editableMode, setEditableMode] = React.useState(false);
   const [notes, setNotes] = React.useState<INote[]>([]);
   const [title, setTitle] = React.useState("");
 
@@ -71,6 +70,11 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
     [notes, dispatch, notepad, createMode]
   );
 
+  const handleNotepadNameChanged = () => {
+    if(createMode) return;
+    dispatch(editNotepad({ notepadName: title }, notepad.id));
+  }
+
   return (
     <div>
       <div className="header">
@@ -97,6 +101,7 @@ const NotePad: React.FC<IProps> = ({ createMode }) => {
           name="title"
           placeholder="Notepad name"
           onChange={(e) => setTitle(e.currentTarget.value)}
+          onBlur={handleNotepadNameChanged}
           value={title}
         />
         <Button text="Add note" onClick={handleAddNote} />
