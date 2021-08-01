@@ -7,7 +7,7 @@ import { NotepadDemo } from "..";
 import { CREATE_NOTEPAD } from "../../configs/constants";
 import { INotepad } from "../Notepad/Interfaces";
 import { getNotepads } from "../Notepad/redux/actions";
-import Charts from "./components/Charts";
+import Charts from "./containers/Charts";
 
 const Dashboard = () => {
   const history = useHistory();

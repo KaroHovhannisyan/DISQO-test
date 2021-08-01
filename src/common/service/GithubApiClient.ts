@@ -23,7 +23,7 @@ class GithubApiClient extends HttpClient {
 
   get gists() {
     return {
-      getPublicGists: () => this.get("/gists/public"),
+      getPublicGists: (page: number) => this.get(`/gists/public?page=${page}`),
     };
   };
 }

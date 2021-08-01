@@ -27,13 +27,6 @@ const GithubApi = new GithubApiClient();
 
 export function* getNotepads() {
   try {
-    // const cities: { [country: string]: string[] } = yield select(
-    //   (store: RootState) => store.cities
-    // );
-    // if (cities[payload.country]) {
-    //   return;
-    // }
-    // yield put(setLoading(action.payload.country));
     const data: Promise<Response> = yield call(GithubApi.notepads.get);    
     yield put(getNotepadsSuccess(adaptNotepads(data)));
   } catch (e) {
