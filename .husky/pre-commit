@@ -3,3 +3,4 @@
 
 yarn run format
 yarn run tslint
+yarn run tslint
